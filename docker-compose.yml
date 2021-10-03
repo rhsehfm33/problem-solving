@@ -1,5 +1,14 @@
 version: "3"
 services:
+  problem-solving-gathering:
+    image: gcc:latest
+    container_name: cpp-gathering-languages
+    working_dir: /home
+    stdin_open: true
+    tty: true
+    volumes:
+      - "./:/home"
+
   problem-solving-c:
     image: gcc:latest
     container_name: language-c
