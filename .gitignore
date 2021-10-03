@@ -1,0 +1,10 @@
+*.cpp
+*.c
+*.class
+*.in
+*.out
+*.py
+*.java
+*sol
+*testcase*
+Main
