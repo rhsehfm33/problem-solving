@@ -9,4 +9,8 @@
 *testcase*
 Main
 
-!tool*.cpp
+!/*.cpp
+!/java/Main.java
+!/c++/algorithm-assignment/sol.cpp
+!/python/sol.py
+!/c/sol.c
