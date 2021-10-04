@@ -10,7 +10,7 @@
 Main
 *tool*
 
-!/*.h
+!/*.hpp
 !/*.cpp
 !/java/Main.java
 !/c++/algorithm-assignment/sol.cpp
