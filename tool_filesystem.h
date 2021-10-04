@@ -3,34 +3,31 @@
 #include <fstream>
 #include <iostream>
 
-namespace tool_filesystem {
+namespace tool_filesystem
+{
 
-    static void print_overwrite_warning_message(const std::string& filePath) {
-
+    void print_overwrite_warning_message(const std::string &filePath)
+    {
         std::cout << filePath << " " << "already exists! It will overwrite!" << std::endl;
-
     }
 
-    static void string_system(const std::string& command) {
-        
+    void string_system(const std::string &command)
+    {
         system(command.c_str());
-
     }
-
 
     // reference : https://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-14-17-c
-    static bool is_file_exists(const std::string& string_path) {
-
+    bool is_file_exists(const std::string &string_path)
+    {
         std::ifstream f(string_path.c_str());
 
         return f.good();
-
     }
 
-
-    static bool make_file(const std::string& string_path) {
-
-        if (is_file_exists(string_path) == false) {
+    bool make_file(const std::string &string_path)
+    {
+        if (is_file_exists(string_path) == false)
+        {
             string_system("touch " + string_path);
             return true;
         }
@@ -38,25 +35,21 @@ namespace tool_filesystem {
         print_overwrite_warning_message(string_path);
 
         return false;
-        
     }
 
-
-    static bool copy_file(const std::string& source_string_path, const std::string& dest_string_path) {
-
+    bool copy_file(const std::string &source_string_path, const std::string &dest_string_path)
+    {
         string_system("cp " + source_string_path + " " + dest_string_path);
-        
-        return true;
 
+        return true;
     }
 
-
-    static void make_directory(const std::string& string_path) {
-
-        if (is_file_exists(string_path) == false) {
+    void make_directory(const std::string &string_path)
+    {
+        if (is_file_exists(string_path) == false)
+        {
             string_system("mkdir " + string_path);
         }
-
     }
 
 };
