@@ -8,7 +8,9 @@
 *sol
 *testcase*
 Main
+*tool*
 
+!/*.h
 !/*.cpp
 !/java/Main.java
 !/c++/algorithm-assignment/sol.cpp

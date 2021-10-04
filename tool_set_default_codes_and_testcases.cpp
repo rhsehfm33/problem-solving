@@ -16,7 +16,6 @@ int input_problem_count()
 
     while (true)
     {
-
         cout << "How many problems you want to added?" << endl;
         cout << "Press ctrl+c to exit this program" << endl;
         cin >> problem_count;
