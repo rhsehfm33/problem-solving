@@ -3,8 +3,8 @@
 #include <filesystem>
 #include <vector>
 
-#include "tool_languages_info.h"
-#include "tool_filesystem.h"
+#include "tool_languages_info.hpp"
+#include "tool_filesystem.hpp"
 
 using namespace std;
 using namespace tool_language_info;
