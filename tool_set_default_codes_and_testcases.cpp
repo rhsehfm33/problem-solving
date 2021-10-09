@@ -10,33 +10,36 @@ using namespace tool_filesystem;
 
 const int INPUT_FAIL = -1;
 
-int input_problem_count()
-{
-    int problem_count;
+// No need to use this function
+// This makes program just more complicated
+// int input_problem_count()
+// {
+//     int problem_count;
 
-    while (true)
-    {
-        cout << "How many problems you want to added?" << endl;
-        cout << "Press ctrl+c to exit this program" << endl;
-        cin >> problem_count;
+//     while (true)
+//     {
+//         cout << "How many problems you want to added?" << endl;
+//         cout << "Press ctrl+c to exit this program" << endl;
+//         cin >> problem_count;
 
-        if (problem_count <= 0)
-        {
-            cout << "Are you kidding me? Input more than 0" << endl;
-        }
-        else if (problem_count >= 100)
-        {
-            cout << "Nah ah. That's too much" << endl;
-        }
-        else
-        {
-            break;
-        }
-    }
-    cout << endl;
+//         if (problem_count <= 0)
+//         {
+//             cout << "Are you kidding me? Input more than 0" << endl;
+//         }
+//         else if (problem_count >= 100)
+//         {
+//             cout << "Nah ah. That's too much" << endl;
+//         }
+//         else
+//         {
+//             break;
+//         }
+//     }
+//     cout << endl;
 
-    return problem_count;
-}
+//     return problem_count;
+// }
+
 
 int input_testcase_count()
 {
@@ -102,7 +105,6 @@ string input_testcase_content(int testcase_index)
     string testcase_content = "";
     while (true)
     {
-
         string added_testcase_content = "";
         cin >> added_testcase_content;
 
@@ -195,18 +197,11 @@ bool create_testcases(const string &problem_name, int testcase_count)
 
 int main()
 {
-    int problem_count = input_problem_count();
+    string problem_name = input_problem_name();
+    int testcase_count = input_testcase_count();
 
-    while (problem_count--)
-    {
-
-        cout << to_string(problem_count + 1) << " problems left" << endl;
-        string problem_name = input_problem_name();
-        int testcase_count = input_testcase_count();
-
-        create_default_folder_and_code_for_all_languages(problem_name);
-        create_testcases(problem_name, testcase_count);
-    }
+    create_default_folder_and_code_for_all_languages(problem_name);
+    create_testcases(problem_name, testcase_count);
 
     cout << "successfully done" << endl;
 
