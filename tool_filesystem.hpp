@@ -39,7 +39,10 @@ namespace tool_filesystem
 
     bool copy_file(const std::string &source_string_path, const std::string &dest_string_path)
     {
-        string_system("cp " + source_string_path + " " + dest_string_path);
+        if (is_file_exists(dest_string_path) == false)
+        {
+            string_system("cp " + source_string_path + " " + dest_string_path);
+        }
 
         return true;
     }

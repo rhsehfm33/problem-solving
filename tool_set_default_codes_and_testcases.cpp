@@ -52,9 +52,9 @@ int input_testcase_count()
         cout << "Press ctrl+c to exit this program" << endl;
         cin >> testcase_count;
 
-        if (testcase_count <= 0)
+        if (testcase_count < 0)
         {
-            cout << "Are you kidding me? Input more than 0" << endl;
+            cout << "Are you kidding me? Input 0 or more" << endl;
         }
         else if (testcase_count >= 10000)
         {
@@ -85,7 +85,6 @@ bool create_default_folder_and_code_for_all_languages(const string &problem_name
 {
     for (int language_index = 0; language_index < LANGUAGES; ++language_index)
     {
-
         string target_directory = paths[language_index] + "/" + problem_name;
         make_directory(target_directory);
 
@@ -106,16 +105,18 @@ string input_testcase_content(int testcase_index)
     while (true)
     {
         string added_testcase_content = "";
-        cin >> added_testcase_content;
+        getline(cin, added_testcase_content);
 
         if (added_testcase_content != "EOF")
         {
-            testcase_content += added_testcase_content + "\n";
+            testcase_content += added_testcase_content;
+            testcase_content += "\n";
         }
         else
         {
             break;
         }
+        
     }
     cout << endl;
 
@@ -128,7 +129,6 @@ void check_file_overwrite(const string &problem_name, int testcase_index)
 
     for (int language_index = 0; language_index < LANGUAGES; ++language_index)
     {
-
         string inTestcaseFilePath = paths[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
         if (is_file_exists(inTestcaseFilePath) == true)
         {
@@ -187,6 +187,9 @@ bool create_testcases(const string &problem_name, int testcase_count)
 {
     int testcase_index = get_last_addable_testcase_index(problem_name);
 
+    // Ignore the '\n' for using getline function properly
+    cin.ignore();
+    
     for (int added_index = 0; added_index < testcase_count; ++added_index)
     {
         create_testcase_x_in(problem_name, testcase_index + added_index);
@@ -203,7 +206,7 @@ int main()
     create_default_folder_and_code_for_all_languages(problem_name);
     create_testcases(problem_name, testcase_count);
 
-    cout << "successfully done" << endl;
+    cout << "successfully done" << endl << endl;
 
     return 0;
 }
