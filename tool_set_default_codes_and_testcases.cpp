@@ -47,7 +47,6 @@ int input_testcase_count()
 
     while (true)
     {
-
         cout << "How many testcases x.in you want to create?" << endl;
         cout << "Press ctrl+c to exit this program" << endl;
         cin >> testcase_count;
@@ -88,10 +87,10 @@ bool create_default_folder_and_code_for_all_languages(const string &problem_name
 {
     for (int language_index = 0; language_index < LANGUAGES; ++language_index)
     {
-        string target_directory = paths[language_index] + "/" + problem_name;
+        string target_directory = PATHS[language_index] + "/" + problem_name;
         make_directory(target_directory);
 
-        string source_default_code = paths[language_index] + "/" + codes[language_index];
+        string source_default_code = PATHS[language_index] + "/" + CODES[language_index];
         copy_file(source_default_code, target_directory);
     }
 
@@ -119,7 +118,6 @@ string input_testcase_content(int testcase_index)
         {
             break;
         }
-        
     }
     cout << endl;
 
@@ -132,7 +130,7 @@ void check_file_overwrite(const string &problem_name, int testcase_index)
 
     for (int language_index = 0; language_index < LANGUAGES; ++language_index)
     {
-        string inTestcaseFilePath = paths[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
+        string inTestcaseFilePath = PATHS[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
         if (is_file_exists(inTestcaseFilePath) == true)
         {
             print_overwrite_warning_message(inTestcaseFilePath);
@@ -162,8 +160,7 @@ bool create_testcase_x_in(const string &problem_name, int testcase_index)
 
     for (int language_index = 0; language_index < LANGUAGES; ++language_index)
     {
-
-        string inTestcaseFilePath = paths[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
+        string inTestcaseFilePath = PATHS[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
         ofstream inTestcaseFile(inTestcaseFilePath.data());
 
         inTestcaseFile << testcase_content;
@@ -175,7 +172,7 @@ bool create_testcase_x_in(const string &problem_name, int testcase_index)
 
 int get_last_addable_testcase_index(const string &problem_name)
 {
-    string target_dir = paths[0] + "/" + problem_name;
+    string target_dir = PATHS[0] + "/" + problem_name;
 
     int testcase_index = 1;
     while (is_file_exists(target_dir + "/" + to_string(testcase_index) + ".in") == true)

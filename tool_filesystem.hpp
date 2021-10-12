@@ -5,7 +5,6 @@
 
 namespace tool_filesystem
 {
-
     void print_overwrite_warning_message(const std::string &filePath)
     {
         std::cout << filePath << " " << "already exists! It will overwrite!" << std::endl;
@@ -54,5 +53,4 @@ namespace tool_filesystem
             string_system("mkdir " + string_path);
         }
     }
-
 };

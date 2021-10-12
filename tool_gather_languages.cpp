@@ -15,7 +15,7 @@ int main()
 {
     make_directory(GATHERING_SPOT);
 
-    for (const auto &entry : directory_iterator(paths[2]))
+    for (const auto &entry : directory_iterator(PATHS[2]))
     {
         string problem_name = entry.path().filename();
         if (problem_name[0] == '.' or problem_name == "Main.java")
@@ -28,7 +28,7 @@ int main()
 
         for (int language_index = 0; language_index < LANGUAGES; ++language_index)
         {
-            string source_code_path = paths[language_index] + "/" + problem_name + "/" + codes[language_index];
+            string source_code_path = PATHS[language_index] + "/" + problem_name + "/" + CODES[language_index];
             system(("cp " + source_code_path + " " + target_dir_path).c_str());
         }
     }
