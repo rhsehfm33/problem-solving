@@ -61,13 +61,13 @@ namespace tool_filesystem
     {
         if (is_finally_writable(dest_string_path) == true)
         {
-            copy_file(source_string_path, dest_string_path);
+            string_system("cp " + source_string_path + " " + dest_string_path);
         }
     }
 
     void make_directory(const std::string &string_path)
     {
-        if (is_finally_writable(string_path) == true)
+        if (is_file_exists(string_path) == false)
         {
             string_system("mkdir " + string_path);
         }
