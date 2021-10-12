@@ -40,6 +40,16 @@ const int INPUT_FAIL = -1;
 //     return problem_count;
 // }
 
+string input_problem_name()
+{
+    string problem_name = "";
+
+    cout << "Input the name of problem. Only english letters or numbers please." << endl;
+    cin >> problem_name;
+    cout << endl;
+
+    return problem_name;
+}
 
 int input_testcase_count()
 {
@@ -70,17 +80,6 @@ int input_testcase_count()
     cin.ignore();
 
     return testcase_count;
-}
-
-string input_problem_name()
-{
-    string problem_name = "";
-
-    cout << "Input the name of problem. Only english letters or numbers please." << endl;
-    cin >> problem_name;
-    cout << endl;
-
-    return problem_name;
 }
 
 bool create_default_folder_and_code_for_all_languages(const string &problem_name)
