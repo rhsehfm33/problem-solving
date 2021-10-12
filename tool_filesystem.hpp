@@ -5,7 +5,7 @@
 
 namespace tool_filesystem
 {
-    void print_overwrite_warning_message(const std::string &filePath)
+    void print_duplicate_file_message(const std::string &filePath)
     {
         std::cout << filePath << " " << "already exists!" << std::endl;
     }
@@ -25,7 +25,7 @@ namespace tool_filesystem
 
     bool is_allow_overwrite(const std::string &string_path)
     {
-        print_overwrite_warning_message(string_path);
+        print_duplicate_file_message(string_path);
         
         std::cout << "If you don't want to overwrite, input \"n\" or \"no\"" << std::endl;
         std::cout << "Else, input \"y\" or \"yes\" to overwrite" << std::endl;
