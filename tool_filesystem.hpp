@@ -7,7 +7,7 @@ namespace tool_filesystem
 {
     void print_overwrite_warning_message(const std::string &filePath)
     {
-        std::cout << filePath << " " << "already exists! It will overwrite!" << std::endl;
+        std::cout << filePath << " " << "already exists!" << std::endl;
     }
 
     void string_system(const std::string &command)
@@ -23,32 +23,51 @@ namespace tool_filesystem
         return f.good();
     }
 
-    bool make_file(const std::string &string_path)
+    bool is_allow_overwrite(const std::string &string_path)
     {
-        if (is_file_exists(string_path) == false)
+        print_overwrite_warning_message(string_path);
+        
+        std::cout << "If you don't want to overwrite, press ctrl+c to exit the program" << std::endl;
+        std::cout << "But if you want to overwrite, input y or any letters" << std::endl;
+
+        std::string input = "";
+        std::cin >> input;
+
+        if (input.size() != 0)
         {
-            string_system("touch " + string_path);
+            std::cout << std::endl;
             return true;
         }
-
-        print_overwrite_warning_message(string_path);
-
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
-    bool copy_file(const std::string &source_string_path, const std::string &dest_string_path)
+    bool is_finally_writable(const std::string &string_path)
     {
-        if (is_file_exists(dest_string_path) == false)
-        {
-            string_system("cp " + source_string_path + " " + dest_string_path);
-        }
+        return (is_file_exists(string_path) == false or is_allow_overwrite(string_path) == true);
+    }
 
-        return true;
+    void make_file(const std::string &string_path)
+    {
+        if (is_finally_writable(string_path) == true)
+        {
+            string_system("touch " + string_path);
+        }
+    }
+
+    void copy_file(const std::string &source_string_path, const std::string &dest_string_path)
+    {
+        if (is_finally_writable(dest_string_path) == true)
+        {
+            copy_file(source_string_path, dest_string_path);
+        }
     }
 
     void make_directory(const std::string &string_path)
     {
-        if (is_file_exists(string_path) == false)
+        if (is_finally_writable(string_path) == true)
         {
             string_system("mkdir " + string_path);
         }

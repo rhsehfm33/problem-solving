@@ -90,7 +90,8 @@ bool create_default_folder_and_code_for_all_languages(const string &problem_name
         make_directory(target_directory);
 
         string source_default_code = PATHS[language_index] + "/" + CODES[language_index];
-        copy_file(source_default_code, target_directory);
+        string dest_default_code = target_directory + "/" + CODES[language_index];
+        copy_file(source_default_code, dest_default_code);
     }
 
     return true;
@@ -123,47 +124,19 @@ string input_testcase_content(int testcase_index)
     return testcase_content;
 }
 
-void check_file_overwrite(const string &problem_name, int testcase_index)
-{
-    bool is_overwrite = false;
-
-    for (int language_index = 0; language_index < LANGUAGES; ++language_index)
-    {
-        string inTestcaseFilePath = PATHS[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
-        if (is_file_exists(inTestcaseFilePath) == true)
-        {
-            print_overwrite_warning_message(inTestcaseFilePath);
-            is_overwrite = true;
-        }
-    }
-
-    if (is_overwrite)
-    {
-        string input = "";
-        cout << "If you don't want to overwrite, press ctrl+c to exit the program" << endl;
-        cout << "But if you want to overwrite, input y or any letters" << endl;
-        cin >> input;
-        if (input.size() != 0)
-        {
-            cout << endl;
-            return;
-        }
-    }
-}
-
 bool create_testcase_x_in(const string &problem_name, int testcase_index)
 {
-    check_file_overwrite(problem_name, testcase_index);
-
     string testcase_content = input_testcase_content(testcase_index);
 
     for (int language_index = 0; language_index < LANGUAGES; ++language_index)
     {
         string inTestcaseFilePath = PATHS[language_index] + "/" + problem_name + "/" + to_string(testcase_index) + ".in";
-        ofstream inTestcaseFile(inTestcaseFilePath.data());
-
-        inTestcaseFile << testcase_content;
-        inTestcaseFile.close();
+        if (is_finally_writable(inTestcaseFilePath) == true)
+        {
+            ofstream inTestcaseFile(inTestcaseFilePath.data());
+            inTestcaseFile << testcase_content;
+            inTestcaseFile.close();
+        }
     }
 
     return true;

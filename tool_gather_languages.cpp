@@ -29,7 +29,8 @@ int main()
         for (int language_index = 0; language_index < LANGUAGES; ++language_index)
         {
             string source_code_path = PATHS[language_index] + "/" + problem_name + "/" + CODES[language_index];
-            system(("cp " + source_code_path + " " + target_dir_path).c_str());
+            string dest_code_path = target_dir_path + "/" + CODES[language_index];
+            copy_file(source_code_path, dest_code_path);
         }
     }
 
