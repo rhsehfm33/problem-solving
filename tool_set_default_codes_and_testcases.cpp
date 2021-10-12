@@ -8,7 +8,6 @@ using namespace tool_language_info;
 using namespace filesystem;
 using namespace tool_filesystem;
 
-const int INPUT_FAIL = -1;
 
 // No need to use this function
 // This makes program just more complicated
@@ -76,9 +75,6 @@ int input_testcase_count()
     }
     cout << endl;
 
-    // Ignore '\n' character
-    cin.ignore();
-
     return testcase_count;
 }
 
@@ -102,6 +98,9 @@ string input_testcase_content(int testcase_index)
     cout << "Testcase index : " << testcase_index << endl;
     cout << "Input the testcase content" << endl;
     cout << "If it's the end of testcase, input the letters \"EOF\"" << endl;
+
+    // clear cin buffer
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     string testcase_content = "";
     while (true)

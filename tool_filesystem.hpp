@@ -27,20 +27,31 @@ namespace tool_filesystem
     {
         print_overwrite_warning_message(string_path);
         
-        std::cout << "If you don't want to overwrite, press ctrl+c to exit the program" << std::endl;
-        std::cout << "But if you want to overwrite, input y or any letters" << std::endl;
+        std::cout << "If you don't want to overwrite, input \"n\" or \"no\"" << std::endl;
+        std::cout << "Else, input \"y\" or \"yes\" to overwrite" << std::endl;
+        std::cout << "Please input without quotes" << std::endl;
 
-        std::string input = "";
-        std::cin >> input;
-
-        if (input.size() != 0)
+        while (true)
         {
-            std::cout << std::endl;
-            return true;
-        }
-        else
-        {
-            return false;
+            std::string input = "";
+            std::cin >> input;
+            if (input == "y" or input == "yes")
+            {
+                std::cout << std::endl;
+                return true;
+            }
+            else if (input == "n" or input == "no")
+            {
+                std::cout << std::endl;
+                return false;
+            }
+            else
+            {
+                std::cout << std::endl;
+                std::cout << "Your input is not one of the options" << std::endl;
+                std::cout << "Input one of these: \"y\", \"yes\", \"n\", \"no\"" << std::endl;
+                std::cout << "And please input without quotes" << std::endl;
+            }
         }
     }
 
