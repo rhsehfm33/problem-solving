@@ -144,7 +144,7 @@ bool create_testcase_x_in(const string &problem_name, int testcase_index)
 
 int get_last_addable_testcase_index(const string &problem_name)
 {
-    string target_dir = PATHS[0] + "/" + problem_name;
+    string target_dir = PATHS[C] + "/" + problem_name;
 
     int testcase_index = 1;
     while (is_file_exists(target_dir + "/" + to_string(testcase_index) + ".in") == true)

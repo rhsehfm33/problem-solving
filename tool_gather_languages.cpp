@@ -15,10 +15,10 @@ int main()
 {
     make_directory(GATHERING_SPOT);
 
-    for (const auto &entry : directory_iterator(PATHS[2]))
+    for (const auto &entry : directory_iterator(PATHS[C]))
     {
         string problem_name = entry.path().filename();
-        if (problem_name[0] == '.' or problem_name == "Main.java")
+        if (problem_name[0] == '.' or problem_name == CODES[C])
         {
             continue;
         }
