@@ -67,6 +67,9 @@ int input_testcase_count()
     }
     cout << endl;
 
+    // Ignore '\n' character
+    cin.ignore();
+
     return testcase_count;
 }
 
@@ -185,14 +188,9 @@ int get_last_addable_testcase_index(const string &problem_name)
 
 bool create_testcases(const string &problem_name, int testcase_count)
 {
-    int testcase_index = get_last_addable_testcase_index(problem_name);
-
-    // Ignore the '\n' for using getline function properly
-    cin.ignore();
-    
-    for (int added_index = 0; added_index < testcase_count; ++added_index)
+    for (int i = 0; i < testcase_count; ++i)
     {
-        create_testcase_x_in(problem_name, testcase_index + added_index);
+        create_testcase_x_in(problem_name, get_last_addable_testcase_index(problem_name));
     }
 
     return true;
