@@ -15,10 +15,10 @@ int main()
 {
     make_directory(GATHERING_SPOT);
 
-    for (const auto &entry : directory_iterator(PATHS[C]))
+    for (const auto &entry : directory_iterator(PATHS[CPP]))
     {
         string problem_name = entry.path().filename();
-        if (problem_name[0] == '.' or problem_name == CODES[C])
+        if (problem_name[0] == '.' or problem_name == CODES[CPP])
         {
             continue;
         }

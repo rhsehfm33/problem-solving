@@ -9,15 +9,6 @@ services:
     volumes:
       - "./:/home"
 
-  problem-solving-c:
-    image: gcc:latest
-    container_name: language-c
-    working_dir: /home
-    stdin_open: true
-    tty: true
-    volumes:
-      - "./c:/home"
-
   problem-solving-cpp:
     image: gcc:latest
     container_name: language-cpp
