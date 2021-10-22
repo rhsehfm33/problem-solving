@@ -39,6 +39,12 @@ using namespace tool_filesystem;
 //     return problem_count;
 // }
 
+void clearGetlineCinBuffer()
+{
+    string dummy = "";
+    getline(cin, dummy);
+}
+
 string input_problem_name()
 {
     string problem_name = "";
@@ -99,23 +105,20 @@ string input_testcase_content(int testcase_index)
     cout << "Input the testcase content" << endl;
     cout << "If it's the end of testcase, input the letters \"EOF\"" << endl;
 
-    // clear cin buffer
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
     string testcase_content = "";
     while (true)
     {
         string added_testcase_content = "";
         getline(cin, added_testcase_content);
 
-        if (added_testcase_content != "EOF")
+        if (added_testcase_content == "EOF") 
         {
-            testcase_content += added_testcase_content;
-            testcase_content += "\n";
+            break;
         }
         else
         {
-            break;
+            testcase_content += added_testcase_content;
+            testcase_content += "\n";
         }
     }
     cout << endl;
@@ -156,6 +159,8 @@ int get_last_addable_testcase_index(const string &problem_name)
 
 bool create_testcases(const string &problem_name, int testcase_count)
 {
+    clearGetlineCinBuffer();    
+
     for (int i = 0; i < testcase_count; ++i)
     {
         create_testcase_x_in(problem_name, get_last_addable_testcase_index(problem_name));
