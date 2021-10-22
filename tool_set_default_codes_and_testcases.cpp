@@ -93,7 +93,12 @@ bool create_default_folder_and_code_for_all_languages(const string &problem_name
 
         string source_default_code = PATHS[language_index] + "/" + CODES[language_index];
         string dest_default_code = target_directory + "/" + CODES[language_index];
-        copy_file(source_default_code, dest_default_code);
+
+        // Copy the file only when the source file doesn't exist
+        if (is_file_exists(dest_default_code) == false)
+        {
+            copy_file(source_default_code, dest_default_code);
+        }
     }
 
     return true;
